@@ -1,0 +1,287 @@
+#tim {
+  background-color: #fffdee;
+  padding: 5rem 1rem;
+  color: #333;
+  margin-bottom: 200px;
+  margin-top: 100px;
+  gap: 20px; /* jarak antar kartu */
+}
+
+#tim h2 {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 4rem;
+  color: #ff8c00;
+  text-shadow: 2px 2px 0px #333, 4px 4px 0px #ff5722;
+  margin: 0;
+  line-height: 1;
+  position: relative;
+  z-index: 2;
+  transition: transform 0.2s ease-in-out;
+}
+
+/* Kartu Wrapper */
+.hand {
+  display: flex;
+  grid-template-columns: repeat(5, 0); /* Awal: menumpuk */
+  gap: 0px; /* jarak normal */
+  padding: 40px 0;
+  transition: 400ms ease;
+  justify-content: center;
+}
+
+#tim:hover .hand {
+  grid-template-columns: repeat(5, 22vmin); /* Hover: menyebar */
+  gap: 40px; /* jarak lebar pas hover */
+}
+
+.card {
+  position: relative;
+  width: 180px; /* dari 220px misalnya */
+  height: 250px; /* dari 300px misalnya */
+  transform-origin: bottom center;
+  transform: rotate(calc((var(--i) * 15deg) - 30deg));
+  transition: transform 400ms ease-in-out;
+  margin-top: 25px;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+#tim:hover .card {
+  transform: rotate(0deg);
+}
+
+.card.active {
+  z-index: 2;
+}
+
+.card-inner {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  border: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+}
+
+.card.active .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  overflow: hidden; /* Penting biar isi terpotong mengikuti sudut */
+  box-shadow: inset 0 0 0 1px #f28c28;
+}
+
+.card-front {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px;
+  background: #fff;
+  border: 2px solid #f28c28;
+  border-radius: 8px;
+}
+
+.card-front img {
+  width: 100%;
+  height: 160px; /* dari 220px, biar proporsional dengan tinggi card */
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 10px;
+}
+
+.name {
+  font-weight: 700;
+  font-size: 1rem;
+  color: #4b2354;
+}
+
+.role {
+  font-size: 0.85rem;
+  color: #777;
+}
+
+.card-back {
+  background: linear-gradient(135deg, #ffe5c0, #ffffff);
+  border: 2px solid #f28c28;
+  border-radius: 8px;
+  padding: 15px;
+  transform: rotateY(180deg);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.profile-top {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.profile-pic {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #f28c28;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Biar vertikalnya sejajar */
+  gap: 8px; /* Jarak antara nama dan NIM */
+}
+
+.profile-info h3 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: bold;
+  color: #4b2354;
+}
+
+.nim {
+  font-size: 12px;
+  color: #777;
+}
+
+.fun-fact {
+  font-style: italic;
+  font-size: 12px;
+  color: #444;
+  background: rgba(255, 255, 255, 0.6);
+  padding: 5px;
+  border-radius: 6px;
+}
+
+.prestasi {
+  font-size: 10px;
+}
+
+.socials img {
+  width: 20px;
+  height: 20px;
+}
+
+@media (max-width: 768px) {
+  .mobile-slider {
+    padding: 1rem;
+  }
+
+  .swiper-slide {
+    background: transparent; /* Karena card sudah punya border & shadow */
+    display: flex;
+    justify-content: center;
+    perspective: 1000px; /* pindahkan ke parent */
+  }
+
+  .card-inner {
+    position: relative;
+    width: 100%;
+    max-width: 250px;
+    height: 350px;
+    transform-style: preserve-3d; /* Wajib untuk flip */
+    transition: transform 0.6s;
+  }
+
+  .card-front,
+  .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 2px solid #f28c28;
+    border-radius: 1rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    backface-visibility: hidden;
+    background: #fff;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card-front {
+    transform: rotateY(0deg);
+  }
+
+  .card-back {
+    transform: rotateY(180deg);
+  }
+
+  /* Saat diklik, card diberi class flipped */
+  /* Saat diklik */
+  .card-inner.flipped {
+    transform: rotateY(180deg);
+  }
+
+  .imgg {
+    width: 100%;
+    height: 250px !important;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .name {
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: #4b2354;
+    margin-bottom: 0.25rem;
+  }
+
+  .role {
+    font-size: 1rem;
+    color: #777;
+  }
+
+  /* Bagian belakang kartu */
+  .profile-top {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .profile-pic {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #f28c28;
+    margin-right: 0.75rem;
+  }
+
+  .profile-info h3 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #4b2354;
+  }
+
+  .profile-info .nim {
+    font-size: 0.85rem;
+    color: #777;
+  }
+
+  .fun-fact {
+    font-style: italic;
+    margin-bottom: 0.5rem;
+  }
+
+  .prestasi {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+
+  .socials a {
+    text-decoration: none;
+  }
+}

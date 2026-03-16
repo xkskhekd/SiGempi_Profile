@@ -1,0 +1,376 @@
+/* Gaya Dasar */
+:root {
+  /* Palet warna komik yang menarik */
+  --primary-color: #ff7f50; /* Oranye Terang */
+  --secondary-color: #ffa500; /* Oranye Lebih Tua */
+  --text-color: #333;
+  --background-color: #fff8e1; /* Kuning muda seperti kertas */
+  --card-bg: #fff;
+  --shadow: 5px 5px 0px #333; /* Bayangan tebal gaya komik */
+  --transition-speed: 0.3s;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  text-shadow: 3px 3px 0px var(--text-color);
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  padding: 1rem 0;
+  border-bottom: 4px dashed var(--text-color);
+}
+
+/* --- Layout Halaman Berita (Disesuaikan) --- */
+.program {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 2rem 2rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .program {
+    grid-template-columns: 1fr 1.5fr;
+  }
+}
+
+.sidebar {
+  background: transparent;
+  padding: 0;
+  border-radius: 8px;
+  box-shadow: none;
+  position: relative;
+}
+
+.sticky-sidebar {
+  position: sticky;
+  top: 1rem;
+  align-self: start;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* Video Card dengan rasio 5:4 (vertikal) yang diperbesar */
+.sticky-sidebar .video-card {
+  position: relative;
+  cursor: pointer;
+  width: 120%; /* Lebar video diperbesar menjadi 100% */
+  height: 0;
+  padding-top: 120%; /* Rasio 5:4 */
+  border: 3px solid var(--text-color);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  transition: transform var(--transition-speed) ease;
+  margin-right: 50px;
+  margin-top: 100px;
+}
+
+.sticky-sidebar .video-card:hover {
+  transform: rotate(-3deg);
+}
+
+.sticky-sidebar .video-card video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+}
+
+/* Gaya Play Button yang diperbarui */
+.sticky-sidebar .video-card .play-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--secondary-color);
+  color: var(--card-bg);
+  border: 3px solid var(--text-color);
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  transition: background var(--transition-speed) ease;
+}
+
+.sticky-sidebar .video-card:hover .play-overlay {
+  background: #e6b000;
+}
+
+/* Ikon kecil di sidebar */
+.sidebar .small-image {
+  position: absolute;
+  bottom: -20px;
+  left: -100px;
+  width: 100px;
+  height: 100px;
+  border-radius: 8px;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.3);
+  padding: 5px;
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid var(--text-color);
+  box-shadow: var(--shadow);
+}
+
+.sidebar .small-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.news-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-left: 75px;
+}
+
+/* Gaya baru untuk item berita horizontal */
+.news-item {
+  display: flex;
+  flex-direction: column; /* Default untuk mobile */
+  background: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition: transform var(--transition-speed) ease-in-out, box-shadow var(--transition-speed) ease-in-out;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(20px) rotate(1deg);
+  border: 3px solid var(--text-color);
+}
+
+@media (min-width: 600px) {
+  .news-item {
+    flex-direction: row; /* Horizontal untuk desktop/tablet */
+  }
+}
+
+.news-item.visible {
+  opacity: 1;
+  transform: translateY(0) rotate(0deg);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.news-item:hover {
+  transform: translateY(-5px) rotate(-1deg);
+  box-shadow: 10px 10px 0px var(--text-color);
+}
+
+.news-item .news-image {
+  flex-shrink: 0;
+  width: 100%; /* Default untuk mobile */
+  height: 200px;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+@media (min-width: 600px) {
+  .news-item .news-image {
+    width: 250px; /* Lebar tetap untuk desktop/tablet */
+  }
+}
+
+.news-item .news-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform var(--transition-speed) ease-in-out;
+  border-radius: 8px;
+  border: 3px solid var(--text-color);
+}
+
+.news-item:hover img {
+  transform: scale(1.05);
+}
+
+.news-content {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.news-content h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.news-content p {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+.news-content .read-more {
+  display: inline-block;
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 700;
+  transition: color var(--transition-speed) ease-in-out;
+}
+
+.news-content .read-more:hover {
+  color: var(--secondary-color);
+}
+
+/* --- Lightbox Video yang Diperbarui --- */
+.lightbox-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.lightbox-modal.show {
+  display: flex;
+  opacity: 1;
+}
+
+.lightbox-modal .video-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.lightbox-modal .video-wrapper-inner {
+  position: relative;
+  width: 90%;
+  max-width: 960px;
+  height: 0;
+  padding-bottom: 80%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 3px solid var(--text-color);
+  box-shadow: var(--shadow);
+}
+
+.lightbox-modal video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.lightbox-modal .close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  color: var(--card-bg);
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 1001;
+  transition: transform 0.3s ease;
+  text-shadow: 2px 2px 0 var(--text-color);
+}
+
+.lightbox-modal .close-btn:hover {
+  transform: rotate(90deg) scale(1.2);
+}
+
+/* --- Layout Responsif untuk Mobile --- */
+@media (max-width: 600px) {
+  .program {
+    grid-template-columns: 1fr; /* Semua jadi satu kolom */
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .sticky-sidebar {
+    position: relative; /* Hilangkan sticky di mobile */
+    top: auto;
+    margin-bottom: 1.5rem;
+    width: 100%;
+    align-items: center;
+  }
+
+  .sticky-sidebar .video-card {
+    width: 100%; /* Penuh lebar layar */
+    padding-top: 100%; /* Rasio 1:1 agar tidak terlalu tinggi */
+    margin: 0;
+  }
+
+  .sticky-sidebar .video-card .play-overlay {
+    width: 80px;
+    height: 80px;
+    font-size: 2rem;
+  }
+
+  .news-list {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 90%; /* Biar ada jarak kanan kiri */
+    gap: 2rem;
+  }
+
+  .news-item {
+    flex-direction: column;
+    border-radius: 10px;
+  }
+
+  .news-item .news-image {
+    width: 90%;
+    height: 180px;
+    padding: 0.5rem;
+    margin-left: 15px;
+    margin-top: 10px;
+  }
+
+  .news-content {
+    padding: 1rem;
+  }
+
+  .sidebar .small-image {
+    position: absolute;
+    bottom: -15px;
+    left: 10px; /* Agar terlihat */
+    width: 70px;
+    height: 70px;
+    transform: rotate(-5deg); /* Sedikit miring untuk efek playful */
+  }
+  .news-content h2,
+  .news-content h3,
+  .news-content h4 {
+    font-size: 1rem; /* perkecil judul */
+  }
+
+  .news-content p {
+    font-size: 0.85rem; /* perkecil paragraf */
+  }
+}

@@ -1,0 +1,367 @@
+/* ===== GLOBAL STYLE ===== */
+.komik {
+  font-family: 'Inter', sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 2rem;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+/* ===== HEADER ===== */
+.header-container {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.title-with-brush {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.main-title {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 4rem;
+  color: #ff8c00;
+  text-shadow: 2px 2px 0px #333, 4px 4px 0px #ff5722;
+  margin: 0;
+  line-height: 1;
+  position: relative;
+  z-index: 2;
+  transition: transform 0.2s ease-in-out;
+}
+
+.title-with-brush:hover .main-title {
+  transform: scale(1.02);
+  color: #ffab40;
+}
+
+.description {
+  font-family: 'Inter', sans-serif;
+  max-width: 600px;
+  margin: 1rem auto 0;
+  font-size: 1.1rem;
+  color: #555;
+  font-style: italic;
+}
+
+/* ===== GRID CONTAINER ===== */
+.juki-grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4rem;
+  max-width: 1200px;
+  width: 100%;
+}
+
+/* ===== CARD STYLE ===== */
+.juki-card {
+  background-color: #f0f0f0;
+  border-radius: 1.5rem;
+  overflow: visible;
+  position: relative;
+  aspect-ratio: 4 / 3;
+  box-shadow: 10px 10px 20px #d9d9d9, -10px -10px 20px #ffffff;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.juki-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 15px 15px 30px #d9d9d9, -15px -15px 30px #ffffff;
+}
+
+/* ===== CARD GRADIENT ===== */
+.juki-card-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(45deg, #ff8c00, #ffa07a, #ffd700);
+  background-size: 200% 200%;
+  animation: gradientMove 5s ease infinite;
+  border-radius: 1.5rem;
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* ===== CARD IMAGE ===== */
+.juki-card-image {
+  position: relative;
+  z-index: 2;
+  width: 95%;
+  height: 95%;
+  object-fit: cover;
+  display: block;
+  border-radius: 1.5rem;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.juki-card:hover .juki-card-image {
+  opacity: 1;
+}
+
+/* ===== LABEL ===== */
+.juki-label {
+  position: absolute;
+  bottom: -0.75rem;
+  left: 50%;
+  transform: translateX(-50%) skew(10deg);
+  background-color: #fff;
+  color: #ff8c00;
+  text-align: center;
+  padding: 0.25rem 2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  box-shadow: none;
+  z-index: 10;
+  border-radius: 100% 0% 100% 0% / 0% 100% 0% 100%;
+  transition: all 0.3s ease;
+}
+
+.juki-label span {
+  display: block;
+  font-family: 'Permanent Marker', cursive;
+  font-size: 1.2rem;
+  position: relative;
+  top: -0.1rem;
+}
+
+.juki-label::before {
+  content: '';
+  position: absolute;
+  bottom: -0.5rem;
+  left: -1rem;
+  height: 1.5rem;
+  width: 1.5rem;
+  background-color: #ffa07a;
+  border-radius: 50%;
+  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1), -3px -3px 6px rgba(255, 255, 255, 0.5);
+}
+
+/* ===== GLITCH EFFECT ===== */
+.juki-card:hover .juki-label span {
+  animation: glitch 0.5s infinite;
+}
+
+@keyframes glitch {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(2px) scale(1.01);
+    color: #ffd700;
+  }
+  50% {
+    transform: translateX(-2px) scale(1.01);
+    color: #ff8c00;
+  }
+  75% {
+    transform: translateX(2px) scale(1.01);
+    color: #ffa07a;
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* ===== ICON FLOATING EFFECT ===== */
+.juki-card::before,
+.juki-card::after {
+  content: '';
+  position: absolute;
+  font-size: 2rem;
+  opacity: 0;
+  transition: all 0.5s ease-out;
+  pointer-events: none;
+  z-index: 11;
+}
+
+@keyframes floating {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* ICON PER CARD */
+.juki-card.card-1:hover::before {
+  content: '🚀';
+  top: 25%;
+  left: -3rem;
+  opacity: 1;
+  transform: translateX(1.5rem);
+  animation: floating 3s ease-in-out infinite;
+}
+.juki-card.card-1:hover::after {
+  content: '🌌';
+  bottom: 25%;
+  right: -3rem;
+  opacity: 1;
+  transform: translateX(-1.5rem);
+  animation: floating 3s ease-in-out infinite reverse;
+}
+
+.juki-card.card-2:hover::before {
+  content: '🐳';
+  top: 25%;
+  left: -3rem;
+  opacity: 1;
+  transform: translateX(1.5rem);
+  animation: floating 3s ease-in-out infinite;
+}
+.juki-card.card-2:hover::after {
+  content: '🎩';
+  bottom: 25%;
+  right: -3rem;
+  opacity: 1;
+  transform: translateX(-1.5rem);
+  animation: floating 3s ease-in-out infinite reverse;
+}
+
+.juki-card.card-3:hover::before {
+  content: '👽';
+  top: 25%;
+  left: -3rem;
+  opacity: 1;
+  transform: translateX(1.5rem);
+  animation: floating 3s ease-in-out infinite;
+}
+.juki-card.card-3:hover::after {
+  content: '🎉';
+  bottom: 25%;
+  right: -3rem;
+  opacity: 1;
+  transform: translateX(-1.5rem);
+  animation: floating 3s ease-in-out infinite reverse;
+}
+
+.juki-card.card-4:hover::before {
+  content: '🍍';
+  top: 25%;
+  left: -3rem;
+  opacity: 1;
+  transform: translateX(1.5rem);
+  animation: floating 3s ease-in-out infinite;
+}
+.juki-card.card-4:hover::after {
+  content: '🏍️';
+  bottom: 25%;
+  right: -3rem;
+  opacity: 1;
+  transform: translateX(-1.5rem);
+  animation: floating 3s ease-in-out infinite reverse;
+}
+
+.juki-card.card-5:hover::before {
+  content: '🪨';
+  top: 25%;
+  left: -3rem;
+  opacity: 1;
+  transform: translateX(1.5rem);
+  animation: floating 3s ease-in-out infinite;
+}
+.juki-card.card-5:hover::after {
+  content: '🦉';
+  bottom: 25%;
+  right: -3rem;
+  opacity: 1;
+  transform: translateX(-1.5rem);
+  animation: floating 3s ease-in-out infinite reverse;
+}
+
+.juki-card.card-6:hover::before {
+  content: '🦖';
+  top: 25%;
+  left: -3rem;
+  opacity: 1;
+  transform: translateX(1.5rem);
+  animation: floating 3s ease-in-out infinite;
+}
+.juki-card.card-6:hover::after {
+  content: '🐜';
+  bottom: 25%;
+  right: -3rem;
+  opacity: 1;
+  transform: translateX(-1.5rem);
+  animation: floating 3s ease-in-out infinite reverse;
+}
+
+@media (max-width: 768px) {
+  /* Grid di HP: 1 kolom */
+  .juki-grid-container {
+    grid-template-columns: repeat(2, minmax(170px, 1fr));
+    gap: 1.5rem; /* jarak antar kartu */
+    padding: 1rem;
+    margin-right: 65px;
+  }
+
+  /* Hilangkan icon hover di mobile */
+  .juki-card::before,
+  .juki-card::after {
+    content: none !important;
+    opacity: 0 !important;
+  }
+
+  /* Card lebih lebar daripada tinggi */
+  .juki-card {
+    aspect-ratio: 5 / 4; /* horizontal */
+    width: 100%;
+    background-color: #fff;
+    padding: 0.3rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Gambar penuh */
+  .juki-card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0.7rem;
+  }
+
+  /* Label lebih kecil */
+  .juki-label {
+    font-size: 0.5rem;
+    padding: 0.15rem 0.6rem;
+    bottom: -0.3rem;
+  }
+
+  .juki-label span {
+    font-size: 0.7rem;
+  }
+
+  /* Judul */
+  .main-title {
+    font-size: 1.8rem;
+  }
+
+  /* Deskripsi */
+  .description {
+    font-size: 0.8rem;
+    max-width: 90%;
+  }
+}

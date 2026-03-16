@@ -1,0 +1,91 @@
+/* Font dan Reset */
+body {
+  margin: 0;
+  padding: 0px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Footer */
+.footer {
+  background-color: #8a4b00;
+  color: #fff3e0;
+  margin-top: 100px;
+}
+
+.footer a {
+  color: #ffe0b2;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+/* Form di footer */
+.footer .form-control {
+  background-color: #a25d08;
+  color: #fff3e0;
+}
+
+.footer .form-control::placeholder {
+  color: #f5cba7;
+  opacity: 0.8;
+}
+
+.footer .btn-outline-light {
+  border-color: #fff3e0;
+  color: #fff3e0;
+}
+
+.footer .btn-outline-light:hover {
+  background-color: #fff3e0;
+  color: #8a4b00;
+}
+
+@media (max-width: 768px) {
+  .footer {
+    text-align: left;
+  }
+
+  .footer .row {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .footer .col-md-5,
+  .footer .col-md-7 {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 15px;
+    margin-bottom: 2rem;
+  }
+
+  .footer h5 {
+    margin-top: 1.5rem;
+    font-size: 1.25rem;
+    text-align: left;
+  }
+
+  .footer .form-control {
+    width: 100%;
+  }
+
+  .footer .btn {
+    width: 100%;
+  }
+
+  .footer ul.nav,
+  .footer ul.list-unstyled {
+    justify-content: flex-start;
+    padding-left: 0;
+  }
+
+  .footer .nav-item {
+    margin-right: 12px;
+  }
+
+  .footer .col-6 {
+    width: 50%;
+  }
+}

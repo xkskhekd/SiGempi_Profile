@@ -1,0 +1,184 @@
+.section-container {
+  display: flex;
+  gap: 2rem;
+  background-color: #fffdee;
+  border-radius: 0; /* Hilangkan radius biar full edge */
+  overflow: hidden;
+  padding: 5rem;
+  color: #d47e27;
+  align-items: flex-start;
+  font-family: 'Fredoka One', 'Comic Sans MS', sans-serif;
+  font-weight: bold;
+  width: 100%; /* Full lebar layar */
+  margin: 0; /* Hilangkan margin biar nempel ke tepi */
+  box-shadow: none; /* Opsional: hilangkan bayangan */
+  min-height: 100vh; /* Penuhi tinggi layar */
+  height: 100vh; /* pastikan container punya tinggi penuh */
+}
+
+.left-panel {
+  flex: 0 0 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* untuk vertical center */
+  align-items: flex-start;
+  height: 100%; /* atau 100vh jika perlu */
+}
+
+.left-panel h2 {
+  font-size: 1.9rem;
+  margin-bottom: 1rem;
+  color: #f28c28;
+  font-weight: bold;
+  font-family: 'Permanent Marker', cursive;
+  text-shadow: 2px 2px 0px #333, 4px 4px 0px #ff5722;
+  line-height: 1;
+  position: relative;
+  z-index: 2;
+}
+
+.left-panel p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  color: #6c4f1d;
+  font-family: 'Comic Sans MS', cursive;
+  font-weight: bold;
+}
+
+/* Swiper Container and Styling */
+.swiper-container {
+  flex: 1;
+  width: 100%;
+  height: 100%; /* Biar ikut penuh */
+  position: relative;
+  overflow: hidden;
+}
+
+/* Swiper's internal styles for vertical scrolling */
+.swiper-wrapper {
+  transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.afuka {
+  height: 120px; /* sebelumnya 150px */
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding: 0.8rem 1rem; /* padding diperkecil */
+  margin-bottom: 1rem; /* margin diperkecil */
+  margin-left: 75px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-size: cover;
+  background-position: center right;
+  max-width: 85%; /* biar ada jarak dari sisi hp */
+}
+
+.afuka:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.afuka::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.6) 30%, rgba(255, 253, 238, 0));
+  z-index: 1;
+}
+
+.afuka img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.afuka span {
+  position: relative;
+  z-index: 2;
+  color: #4d240dff;
+  font-weight: 700;
+  font-size: 1rem;
+  max-width: 55%;
+  text-align: left;
+  font-family: 'Comic Neue', cursive;
+  font-weight: bold;
+}
+
+/* Swiper Pagination Styling */
+.swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  background: #f28c28;
+  opacity: 0.5;
+  transition: all 0.3s ease;
+}
+
+.swiper-pagination-bullet-active {
+  opacity: 1;
+  background: #ff5722;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .section-container {
+    flex-direction: column;
+    padding: 1.5rem 1rem;
+    gap: 1.5rem; /* beri jarak antar panel */
+    min-height: auto; /* jangan paksa tinggi penuh di HP */
+    height: auto;
+  }
+
+  .left-panel {
+    width: 100%;
+    padding: 0;
+    align-items: center;
+    text-align: center;
+    justify-content: flex-start;
+  }
+
+  .left-panel h2 {
+    font-size: 1.4rem;
+    line-height: 1.2;
+    text-shadow: 1px 1px 0px #333, 2px 2px 0px #ff5722;
+    margin-bottom: 0.8rem;
+  }
+
+  .left-panel p {
+    font-size: 0.85rem;
+    line-height: 1.4;
+    margin-bottom: 1rem;
+  }
+
+  .swiper-container {
+    height: auto;
+    width: 100%;
+  }
+
+  .afuka {
+    height: 200px; /* lebih pendek di HP */
+    margin-left: 0px;
+    max-width: 80%;
+    padding: 0.6rem 0.8rem;
+    margin-bottom: 3rem;
+    border-radius: 8px;
+  }
+
+  .afuka span {
+    font-size: 0.85rem;
+    max-width: 70%;
+  }
+
+  /* Pagination bullet lebih kecil di HP */
+  .swiper-pagination-bullet {
+    width: 8px;
+    height: 8px;
+  }
+}

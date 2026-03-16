@@ -1,0 +1,106 @@
+/* Custom Button Styles */
+.btn-custom {
+  font-family: 'Fredoka', sans-serif;
+  font-weight: bold;
+  border-radius: 20px;
+  padding: 10px 20px;
+  margin-right: 15px;
+  border: none;
+  position: relative; /* To position the stars inside the button */
+  overflow: hidden; /* Prevent overflow of stars */
+  transition: all 0.3s ease; /* Smooth transition effect */
+}
+
+.btn-blue {
+  background-color: #4f46e5; /* Your chosen blue color */
+  color: white;
+  box-shadow: 0 4px #6b7280; /* Shadow to match the contrast */
+}
+
+.btn-yellow {
+  background-color: #f1d359ff; /* Your yellow color */
+  color: white;
+  box-shadow: 0 4px #6b7280; /* Darker shadow for yellow */
+}
+
+/* Star Animations */
+.star-1,
+.star-2,
+.star-3,
+.star-4 {
+  position: absolute;
+  width: 20px;
+  height: auto;
+  filter: drop-shadow(0 0 0 #4c83fa);
+  z-index: -5;
+  transition: all 0.5s ease;
+}
+
+.star-1 {
+  top: 20%;
+  left: 20%;
+}
+
+.star-2 {
+  top: 45%;
+  left: 45%;
+}
+
+.star-3 {
+  top: 35%;
+  left: 65%;
+}
+
+.star-4 {
+  top: 10%;
+  left: 80%;
+}
+
+/* Hover Effects */
+.btn-blue:hover {
+  background-color: transparent;
+  color: #4f46e5; /* Change text color to blue */
+  border: 2px solid #4f46e5; /* Add border on hover */
+  box-shadow: 0 4px #6b7280; /* Shadow effect */
+}
+
+.btn-yellow:hover {
+  background-color: transparent;
+  color: #f1d359ff; /* Change text color to yellow */
+  border: 2px solid #ffe26f; /* Add border on hover */
+  box-shadow: 0 4px #e5b700; /* Shadow effect */
+}
+
+/* Hover Animation for Stars */
+.btn-blue:hover .star-1 {
+  top: 50%;
+  left: 70%;
+  filter: drop-shadow(0 0 0px #4c83fa);
+  z-index: 2;
+}
+
+.btn-blue:hover .star-2 {
+  top: -0%;
+  left: 10%;
+  filter: drop-shadow(0 0 0px #4c83fa);
+  z-index: 2;
+}
+
+.btn-yellow:hover .star-3 {
+  top: 50%;
+  left: 80%;
+  filter: drop-shadow(0 0 0px #dbc56eff);
+  z-index: 2;
+}
+
+.btn-yellow:hover .star-4 {
+  top: 5%;
+  left: 5%;
+  filter: drop-shadow(0 0 0px #dbc56eff);
+  z-index: 2;
+}
+
+/* Star Colors */
+.fil0 {
+  fill: #000000; /* Blue color for stars */
+}
